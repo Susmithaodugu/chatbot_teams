@@ -15,7 +15,8 @@ from langchain_community.document_loaders import DirectoryLoader
 
 # Initialize embeddings and ChromaDB
 model_name = "sentence-transformers/all-mpnet-base-v2"
-device = "cpu"
+device = "cuda" if torch.cuda.is_available() else "cpu"
+# device = "cpu"
 model_kwargs = {"device": device}
 embeddings = HuggingFaceEmbeddings(model_name=model_name, model_kwargs=model_kwargs)
 
